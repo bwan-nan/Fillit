@@ -6,7 +6,7 @@
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:15:28 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/13 18:56:35 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/13 19:23:54 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int				main(int ac, char **av)
 	str = NULL;
 	tmp = NULL;
 	if (ac != 2)
-		ft_putendl("./fillit source_file");
+		ft_putendl("usage: ./fillit source_file");
 	else
 	{
 		fd = open(av[1], O_RDONLY);
