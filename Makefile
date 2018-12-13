@@ -6,7 +6,7 @@
 #    By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 12:57:12 by cnotin            #+#    #+#              #
-#    Updated: 2018/12/10 14:40:18 by cnotin           ###   ########.fr        #
+#    Updated: 2018/12/12 19:09:26 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ HEADERS = fillit.h
 
 LIBFT = libft/libft.a
 
-SRC = main.c ft_check.c ft_map.c tetriminos.c
+SRC = main.c ft_check.c ft_map.c ft_read.c ft_backtrack.c \
 
 all : $(NAME)
 

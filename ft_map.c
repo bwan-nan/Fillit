@@ -6,65 +6,109 @@
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 12:46:14 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/10 14:14:12 by cnotin           ###   ########.fr       */
+/*   Updated: 2018/12/13 09:21:27 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_piece		*new_add_piece(t_piece **stock, int piece_nb)
+void			ft_delmap(char ***map)
 {
-	t_piece		*current_piece;
-	t_piece		*new_piece;
-
-	current_piece = (*stock);
-	if ((*stock) != NULL)
+	if (**map)
 	{
-		while (current_piece->next)
-			current_piece = current_piece->next;
+		free(**map);
+		(void)**map;
 	}
-	if (!(new_piece = (t_piece*)ft_memalloc(sizeof(t_piece))))
-		return (NULL);
-	new_piece->piece_nb = piece_nb;
-	new_piece->next = NULL;
-	if ((*stock) == NULL)
-		(*stock) = new_piece;
-	else
-		current_piece->next = new_piece;
-	return (new_piece);
 }
 
-void		set_index(t_piece **current_piece, t_point **buf_point,
-			int line_nb, int i)
+char			**ft_block_map(char **map, int size)
 {
-	(*buf_point)->x = i - (*current_piece)->piece->x;
-	(*buf_point)->y = line_nb - (*current_piece)->piece->y - 1;
+	int pos_x;
+	int pos_y;
+
+	pos_y = 0;
+	if (!(map = (char **)malloc(sizeof(char *) * size + 1)))
+		return (0);
+	while (pos_y < size)
+	{
+		if (!(map[pos_y] = (char *)malloc(sizeof(char) * size + 1)))
+			return (0);
+		pos_x = 0;
+		while (pos_x < size)
+		{
+			map[pos_y][pos_x] = '.';
+			pos_x++;
+		}
+		map[pos_y][pos_x] = '\0';
+		pos_y++;
+	}
+	map[pos_y] = 0;
+	return (map);
 }
 
-int			get_index(t_piece **current_piece, int line_nb, int i)
+char			**ft_del_block(char **map, t_block **block,
+				int size)
 {
-	t_point		*buf_piece;
-	t_point		*buf_point;
+	int i;
+	int pos_x;
+	int pos_y;
 
-	buf_piece = (*current_piece)->piece;
-	if ((*current_piece)->piece != NULL)
+	i = 0;
+	pos_y = 0;
+	while (pos_y < size)
 	{
-		while (buf_piece->next)
-			buf_piece = buf_piece->next;
+		pos_x = 0;
+		while (pos_x < size)
+		{
+			if (map[pos_y][pos_x] == (*block)->c)
+				map[pos_y][pos_x] = '.';
+			pos_x++;
+		}
+		pos_y++;
 	}
-	if (!(buf_point = (t_point*)malloc(sizeof(t_point))))
-		return (-1);
-	if ((*current_piece)->piece == NULL)
+	return (map);
+}
+
+char			**ft_put_block(char **map,
+				t_block **block, int x_vector, int y_vector)
+{
+	int i;
+	int pos_x;
+	int pos_y;
+
+	i = 0;
+	pos_y = 0;
+	while (map[pos_y])
 	{
-		buf_point->x = i;
-		buf_point->y = line_nb - 1;
+		pos_x = 0;
+		while (map[pos_y][pos_x])
+		{
+			if ((*block)->x[i] + x_vector == pos_x
+					&& (*block)->y[i] + y_vector == pos_y)
+			{
+				map[pos_y][pos_x] = (*block)->c;
+				i++;
+			}
+			pos_x++;
+		}
+		pos_y++;
 	}
-	else
-		set_index(current_piece, &buf_point, line_nb, i);
-	buf_point->next = NULL;
-	if ((*current_piece)->piece == NULL)
-		(*current_piece)->piece = buf_point;
-	else
-		buf_piece->next = buf_point;
-	return (0);
+	return (map);
+}
+
+void	ft_display_map(char **map)
+{
+	int	i;
+
+	if (map == NULL)
+	{
+		ft_putendl("error\n");
+		return ;
+	}
+	i = 0;
+	while (map[i] != '\0')
+	{
+		ft_putendl(map[i]);
+		i++;
+	}
 }

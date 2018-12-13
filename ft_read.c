@@ -6,13 +6,13 @@
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 00:32:36 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/12 19:16:21 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/13 09:52:47 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int			ft_count_block(char *str)
+int			ft_count_block(char *str)
 {
 	int		i;
 	int		result;

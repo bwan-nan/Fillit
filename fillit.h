@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/10 12:51:25 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/10 15:25:59 by bwan-nan         ###   ########.fr       */
+/*   Created: 2018/12/11 13:42:19 by cnotin            #+#    #+#             */
+/*   Updated: 2018/12/13 09:53:15 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,33 @@
 # define FILLIT_H
 
 # include "libft/libft.h"
+# include "fillit.h"
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
 
-typedef	struct			s_point
+typedef struct			s_block
 {
-	int					x;
-	int					y;
-	struct s_point		*next;
-}						t_point;
+	char				c;
+	int					x[4];
+	int					y[4];
+	struct s_block		*next;
+}						t_block;
 
-typedef struct			s_piece
-{
-	int					piece_nb;
-	t_point				*piece;
-	struct s_piece		*next;
-}						t_piece;
-
-int				get_next_line(const int fd, char **line);
-int				checklines(t_piece **stock, const int fd);
-int				get_index(t_piece **current_piece, int line_nb, int i);
-t_piece			*new_add_piece(t_piece **stock, int piece_nb);
-int				tetricheck(char *str);
-int				put_tab(int x, t_piece *stock);
+int						ft_check_file(char *str);
+t_block					*launcher(char *str);
+t_block					*ft_stock_block(char *str);
+char					**ft_block_map(char **map, int size);
+void					ft_display_map(char **map);
+void					ft_delmap(char ***map);
+int						backtracking(char **map, t_block **block,
+						int position, int size);
+char					**ft_put_block(char **map, t_block **block,
+						int x_vector, int y_vector);
+char					**ft_del_block(char **map, t_block **block,
+						int size);
+int					ft_count_block(char *str);
 
 #endif

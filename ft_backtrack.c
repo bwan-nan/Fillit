@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 13:07:07 by bwan-nan          #+#    #+#             */
-/*   Updated: 2018/12/12 20:09:27 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/13 09:33:33 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,17 @@ int				backtracking(char **map, t_block **block,
 	ft_display_map(map);
 	while (position != size * size)
 	{
-		if (is_placeable(map, block, x, y) != 1 && position != size)
+		y = position / size;
+		x = position % size;
+		if (is_placeable(map, block, x, y) != 1)
 			return (backtracking(map, block, position + 1, size));
-		if (is_placeable(map, block, x, y))
+		else if (is_placeable(map, block, x, y))
 		{
-			ft_put_block(map, block, get_x_vector(block, x), get_y_vector(block, y));
+			map = ft_put_block(map, block, get_x_vector(block, x), get_y_vector(block, y));
 			ft_display_map(map);
 			if (backtracking(map, &((*block)->next), 0, size))
 				return (1);
-			ft_del_block(map, block, size);
+			map = ft_del_block(map, block, size);
 		}
 		position += 1;
 	}

@@ -6,7 +6,7 @@
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 15:23:50 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/10 14:55:20 by cnotin           ###   ########.fr       */
+/*   Updated: 2018/12/11 12:08:44 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include "get_next_line.h"
 
 typedef struct		s_list
 {
@@ -96,5 +97,6 @@ void				*ft_memchr(const void *s, int c, size_t n);
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
+void				*ft_realloc(void *ptr, size_t size);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 12:28:58 by cnotin            #+#    #+#              #
-#    Updated: 2018/12/10 14:53:07 by cnotin           ###   ########.fr        #
+#    Updated: 2018/12/11 12:10:36 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRC = ft_strcpy.c ft_strlen.c ft_strdup.c ft_strncpy.c ft_strcmp.c \
 		ft_putnbr.c ft_putnbr_fd.c ft_itoa.c ft_strsplit.c \
 		ft_lstnew.c ft_lstadd.c ft_lstiter.c ft_lstdelone.c ft_lstdel.c \
 		ft_lstmap.c ft_lstcount.c ft_printlst.c ft_nb_word.c ft_strrev.c \
-		ft_isspace.c ft_strndup.c ft_strjoinf.c get_next_line.c \
+		ft_isspace.c ft_strndup.c ft_strjoinf.c get_next_line.c ft_realloc.c \
 
 
 OBJ = $(SRC:.c=.o)
