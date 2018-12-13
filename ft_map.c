@@ -6,7 +6,7 @@
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 12:46:14 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/13 09:21:27 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/13 15:15:12 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char			**ft_put_block(char **map,
 	return (map);
 }
 
-void	ft_display_map(char **map)
+void			ft_display_map(char **map)
 {
 	int	i;
 

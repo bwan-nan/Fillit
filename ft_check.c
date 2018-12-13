@@ -6,7 +6,7 @@
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 12:57:06 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/12 14:59:26 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/13 14:02:47 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static int		ft_check_link(char *str, int j)
 {
 	int count;
 	int i;
-
 
 	i = 0;
 	count = 0;
@@ -42,10 +41,10 @@ static int		ft_check_link(char *str, int j)
 
 static int		ft_validblock(char *str)
 {
-	static int 	i = 0;
-	static int 	number_of_characters = 0;
-	static int 	line_index = 0;
-	static int 	hashtag = 0;
+	static int	i = 0;
+	static int	number_of_characters = 0;
+	static int	line_index = 0;
+	static int	hashtag = 0;
 
 	while (str[i] == '.' || str[i] == '#' || str[i] == '\n')
 	{

@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_recursive_power.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bwan-nan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 14:36:49 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/13 13:37:11 by bwan-nan         ###   ########.fr       */
+/*   Created: 2018/09/04 21:35:39 by bwan-nan          #+#    #+#             */
+/*   Updated: 2018/09/05 22:05:39 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
-#include "libft.h"
-
-char	*ft_strdup(const char *s1)
+int		ft_recursive_power(int nb, int power)
 {
-	char	*s2;
-
-	if (!(s2 = (char *)ft_memalloc(sizeof(char) * (ft_strlen(s1) + 1))))
-		return (NULL);
-	else
-		s2 = ft_strcpy(s2, s1);
-	return (s2);
+	if (power < 0)
+		return (0);
+	if (power == 0)
+		return (1);
+	return (nb * ft_recursive_power(nb, power - 1));
 }

@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_find_next_sqrt.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 14:36:49 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/13 13:37:11 by bwan-nan         ###   ########.fr       */
+/*   Created: 2018/12/13 15:52:06 by bwan-nan          #+#    #+#             */
+/*   Updated: 2018/12/13 17:24:42 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+int		ft_find_next_sqrt(int nb)
 {
-	char	*s2;
-
-	if (!(s2 = (char *)ft_memalloc(sizeof(char) * (ft_strlen(s1) + 1))))
-		return (NULL);
+	if (nb < 0)
+		return (0);
+	if (ft_sqrt(nb))
+		return (ft_sqrt(nb));
 	else
-		s2 = ft_strcpy(s2, s1);
-	return (s2);
+		while (ft_sqrt(nb) == 0)
+			nb++;
+	return (ft_sqrt(nb));
 }

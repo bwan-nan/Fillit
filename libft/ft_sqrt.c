@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bwan-nan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 14:36:49 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/13 13:37:11 by bwan-nan         ###   ########.fr       */
+/*   Created: 2018/09/05 09:24:01 by bwan-nan          #+#    #+#             */
+/*   Updated: 2018/12/13 15:52:29 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+int		ft_sqrt(int nb)
 {
-	char	*s2;
+	int i;
+	int result;
 
-	if (!(s2 = (char *)ft_memalloc(sizeof(char) * (ft_strlen(s1) + 1))))
-		return (NULL);
-	else
-		s2 = ft_strcpy(s2, s1);
-	return (s2);
+	i = 1;
+	result = i * i;
+	while (i * i <= nb)
+	{
+		if (i * i == nb)
+			return (i);
+		i++;
+	}
+	if (i * i > nb)
+		return (0);
+	return (1);
 }

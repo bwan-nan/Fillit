@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/11 00:32:36 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/13 09:52:47 by bwan-nan         ###   ########.fr       */
+/*   Created: 2018/12/13 13:58:25 by bwan-nan          #+#    #+#             */
+/*   Updated: 2018/12/13 18:27:06 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			ft_count_block(char *str)
+int					ft_count_block(char *str)
 {
 	int		i;
 	int		result;
@@ -91,84 +91,31 @@ t_block				*launcher(char *str)
 	return (blocks_list);
 }
 
+char				*ft_read(char *file_name, char **line, char *tmp, int len)
+{
+	int		fd;
+	char	*str;
 
-
-
-
-
-
-/*
-   void 	ft_set_block(t_block **tmp, char *str)
-   {
-   int i;
-   int j;
-
-   i = 0;
-   j = 0;
-   while (str[i])
-   {
-   if (str[i] == '#')
-   {
-   (*tmp)->x[j] = i % 5;
-   (*tmp)->y[j] = i / 5;
-   j++;
-   }
-   i++;
-   }
-   }
-
-   t_block 	*ft_stock_block(char *str)
-   {
-   int count_block;
-   int i;
-   char letter;
-   t_block *stock;
-   t_block *tmp;
-
-   i = 0;
-   letter = 'A';
-   count_block = ft_count_block(str);
-   if (!(stock = (t_block *)malloc(sizeof(t_block))))
-   return (NULL);
-   tmp = stock;
-   while (count_block > 0)
-   {
-   tmp->c = letter;
-   ft_set_block(&tmp, ft_strsub(str, 0 + i, 20));
-   if (!(tmp->next = (t_block *)malloc(sizeof(t_block))))
-   return (NULL);
-   tmp= tmp->next;
-   count_block--;
-   letter++;
-   i += 21;
-   }
-   tmp->next = NULL;
-   return (stock);
-   }
-
-   char *ft_red(char *str)
-   {
-   int i;
-   int fd;
-   char buf;
-   char *ret;
-
-   i = 0;
-   fd = open(str, O_RDONLY);
-   while (read(fd, &buf, 1))
-   i++;
-   if (i > 546 || i < 20)
-   {
-   ft_putendl("error");
-   exit (0);
-   }
-   ret = ft_strnew(i);
-   i = 0;
-   close(fd);
-   fd = open(str, O_RDONLY);
-   while (read(fd, &buf, 1))
-   ret[i++] = buf;
-close(fd);
-return (ret);
+	str = NULL;
+	fd = open(file_name, O_RDONLY);
+	while (get_next_line(fd, line))
+	{
+		len = ft_strlen(*line);
+		if (!str)
+			str = ft_strdup(*line);
+		else
+		{
+			tmp = str;
+			str = ft_strjoin(str, *line);
+			free(tmp);
+			len = ft_strlen(str);
+		}
+		str[len] = '\n';
+		str[len + 1] = '\0';
+		ft_strdel(line);
+	}
+	close(fd);
+	if (str == NULL)
+		return ("error");
+	return (str);
 }
-*/

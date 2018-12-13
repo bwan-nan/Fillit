@@ -6,86 +6,93 @@
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:15:28 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/13 10:06:21 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/13 18:24:32 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
-
-int		main(int ac, char **av)
+static int		do_we_expand_it(t_block **blocks_list)
 {
-	int		fd;
+	t_block		*elem;
+	int			a;
+	int			b;
+	int			c;
+	int			count;
+
+	count = 0;
+	elem = *blocks_list;
+	while (elem)
+	{
+		a = elem->x[0];
+		b = elem->x[1];
+		c = elem->x[2];
+		if (a == b && a == c)
+			count++;
+		a = elem->y[0];
+		b = elem->y[1];
+		c = elem->y[2];
+		if (a == b && a == c)
+			count++;
+		elem = elem->next;
+	}
+	if (count > 0)
+		return (1);
+	return (0);
+}
+
+static void		solver(char *str, t_block **blocks_list)
+{
+	char	**map;
+	int		map_width;
+
+	map = NULL;
+	if (ft_check_file(str))
+	{
+		*blocks_list = launcher(str);
+		if (ft_find_next_sqrt(ft_count_block(str) * 4) ==
+			ft_sqrt(ft_count_block(str) * 4) &&
+			do_we_expand_it(blocks_list) == 1 && ft_count_block(str) > 7)
+			map_width = ft_find_next_sqrt(ft_count_block(str) * 4) + 1;
+		else
+			map_width = ft_find_next_sqrt(ft_count_block(str) * 4);
+		map = ft_block_map(map, map_width);
+		while (backtracking(map, blocks_list, 0, map_width) == 0)
+		{
+			map_width++;
+			ft_delmap(&map);
+			map = ft_block_map(map, map_width);
+		}
+		ft_display_map(map);
+	}
+	else
+		ft_putendl("error");
+}
+
+int				main(int ac, char **av)
+{
 	char	*line;
+	char	*str;
 	char	*tmp;
 	int		len;
-	char	*str;
 	t_block *blocks_list;
 
 	line = NULL;
 	str = NULL;
-	fd = open(av[1], O_RDONLY);
+	tmp = NULL;
+	len = 0;
 	if (ac != 2)
-		ft_putendl("fillit source_file");
-	if (ac == 2)
+		ft_putendl("./fillit source_file");
+	else
 	{
-		while (get_next_line(fd, &line))
+		str = ft_read(av[1], &line, tmp, len);
+		if (ft_strcmp(str, "error") == 0)
 		{
-			if (!str)
-			{
-				len = ft_strlen(line);
-				str = ft_memalloc(sizeof(char) * (len + 1));
-				str = ft_strcpy(str, line);
-				str[len] = '\n';
-				str[len + 1] = '\0';
-			}
-			else
-			{
-				tmp = str;
-				str = ft_strjoin(str, line);
-				free(tmp);
-				len = ft_strlen(str);
-				tmp = str;
-				str = ft_memalloc(sizeof(char) * (len + 1));
-				str = ft_strcpy(str, tmp);
-				free(tmp);
-				str[len] = '\n';
-				str[len + 1] = '\0';
-			}
-			ft_strdel(&line);
+			ft_putendl("error");
+			return (-1);
 		}
-		ft_putendl(str);
-	//	printf("%zu\n", ft_strlen(str));
-	//	printf("%d\n", ft_count_block(str));
-		if (ft_check_file(str))
-		{
-			ft_putendl("\033[32mOK\033[0m");
-
-			blocks_list = launcher(str);
-			char **map = NULL;
-			int l;
-			if (ft_count_block(str) > 7)
-				l = 7;
-			else
-				l = 2;
-			map = ft_block_map(map, l);
-			while (backtracking(map, &blocks_list, 0, l) == 0)
-			{
-				l++;
-				ft_delmap(&map);
-				printf("L = %d \n", l);
-				map = ft_block_map(map, l);
-			}
-			ft_putstr("\n\n\n");
-			ft_display_map(map);
-			ft_putchar('\n');
-		}
-		else
-		{
-			ft_putendl("\033[31merror\033[0m");
-		}
+		solver(str, &blocks_list);
+		free(blocks_list);
 	}
-	close (fd);
 	return (0);
 }

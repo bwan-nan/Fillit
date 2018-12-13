@@ -6,7 +6,7 @@
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 15:23:50 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/11 12:08:44 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/13 16:15:50 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,8 @@ void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_realloc(void *ptr, size_t size);
+int					ft_sqrt(int nb);
+int					ft_find_next_sqrt(int nb);
+int					ft_recursive_power(int nb, int power);
 
 #endif

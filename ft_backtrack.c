@@ -6,21 +6,20 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 13:07:07 by bwan-nan          #+#    #+#             */
-/*   Updated: 2018/12/13 09:33:33 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/13 18:19:34 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
-static int		get_y_vector(t_block **block, int from_y)
+int				get_y_vector(t_block **block, int to_y)
 {
-	return (from_y - (*block)->y[0]);
+	return (to_y - (*block)->y[0]);
 }
 
-static int		get_x_vector(t_block **block, int from_x)
+int				get_x_vector(t_block **block, int to_x)
 {
-	return (from_x - (*block)->x[0]);
+	return (to_x - (*block)->x[0]);
 }
 
 static int		is_placeable(char **map, t_block **elem, int x, int y)
@@ -29,15 +28,16 @@ static int		is_placeable(char **map, t_block **elem, int x, int y)
 	int			i;
 	int			j;
 	int			size;
-	
+
 	k = 0;
 	size = ft_strlen(map[0]);
 	while (k < 4)
 	{
 		i = (*elem)->y[k] + get_y_vector(elem, y);
 		j = (*elem)->x[k] + get_x_vector(elem, x);
-		if (i > size - 1 || j > size - 1 || map[i][j] != '.')
-		   return (0);	
+		if (i > size - 1 || j > size - 1 || map[i][j] != '.'
+				|| i < 0 || j < 0)
+			return (0);
 		k++;
 	}
 	return (1);
@@ -51,10 +51,6 @@ int				backtracking(char **map, t_block **block,
 
 	if (*block == NULL)
 		return (1);
-	y = position / size;
-	x = position % size;
-	printf("passing with : Position = %d, size = %d, letter = %c\n", position, size, (*block)->c);
-	ft_display_map(map);
 	while (position != size * size)
 	{
 		y = position / size;
@@ -63,8 +59,8 @@ int				backtracking(char **map, t_block **block,
 			return (backtracking(map, block, position + 1, size));
 		else if (is_placeable(map, block, x, y))
 		{
-			map = ft_put_block(map, block, get_x_vector(block, x), get_y_vector(block, y));
-			ft_display_map(map);
+			map = ft_put_block(map, block, get_x_vector(block, x),
+					get_y_vector(block, y));
 			if (backtracking(map, &((*block)->next), 0, size))
 				return (1);
 			map = ft_del_block(map, block, size);
@@ -72,4 +68,4 @@ int				backtracking(char **map, t_block **block,
 		position += 1;
 	}
 	return (0);
-}	
+}
