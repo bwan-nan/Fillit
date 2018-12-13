@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 13:58:25 by bwan-nan          #+#    #+#             */
-/*   Updated: 2018/12/13 18:27:06 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/13 18:56:51 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,15 @@ t_block				*launcher(char *str)
 	return (blocks_list);
 }
 
-char				*ft_read(char *file_name, char **line, char *tmp, int len)
+char				*ft_read(int *fd, char **line, char *tmp)
 {
-	int		fd;
 	char	*str;
+	int		len;
 
 	str = NULL;
-	fd = open(file_name, O_RDONLY);
-	while (get_next_line(fd, line))
+	if (*fd == -1)
+		return ("error");
+	while (get_next_line(*fd, line))
 	{
 		len = ft_strlen(*line);
 		if (!str)
@@ -114,7 +115,6 @@ char				*ft_read(char *file_name, char **line, char *tmp, int len)
 		str[len + 1] = '\0';
 		ft_strdel(line);
 	}
-	close(fd);
 	if (str == NULL)
 		return ("error");
 	return (str);

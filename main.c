@@ -6,7 +6,7 @@
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:15:28 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/13 18:24:32 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/13 18:56:35 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,19 @@ int				main(int ac, char **av)
 	char	*line;
 	char	*str;
 	char	*tmp;
-	int		len;
+	int		fd;
 	t_block *blocks_list;
 
 	line = NULL;
 	str = NULL;
 	tmp = NULL;
-	len = 0;
 	if (ac != 2)
 		ft_putendl("./fillit source_file");
 	else
 	{
-		str = ft_read(av[1], &line, tmp, len);
+		fd = open(av[1], O_RDONLY);
+		str = ft_read(&fd, &line, tmp);
+		close(fd);
 		if (ft_strcmp(str, "error") == 0)
 		{
 			ft_putendl("error");

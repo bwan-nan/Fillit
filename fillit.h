@@ -6,7 +6,7 @@
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:42:19 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/13 18:26:55 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/13 18:54:02 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ char					**ft_put_block(char **map, t_block **block,
 char					**ft_del_block(char **map, t_block **block,
 						int size);
 int						ft_count_block(char *file_name);
-char					*ft_read(char *file_name, char **line,
-						char *tmp, int len);
+char					*ft_read(int *fd, char **line, char *tmp);
 int						get_y_vector(t_block **block, int to_y);
 int						get_x_vector(t_block **block, int to_x);
 #endif
