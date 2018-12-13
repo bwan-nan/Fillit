@@ -6,7 +6,7 @@
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 12:46:14 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/13 15:15:12 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/13 19:49:16 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,17 @@
 
 void			ft_delmap(char ***map)
 {
+	int i;
+
+	i = 0;
 	if (**map)
 	{
-		free(**map);
-		(void)**map;
+		while ((*map)[i])
+		{
+			free((*map)[i]);
+			i++;
+		}
+		free(*map);
 	}
 }
 
