@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 13:58:25 by bwan-nan          #+#    #+#             */
-/*   Updated: 2018/12/13 18:56:51 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/14 11:41:28 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,29 +91,28 @@ t_block				*launcher(char *str)
 	return (blocks_list);
 }
 
-char				*ft_read(int *fd, char **line, char *tmp)
+char				*ft_read(int *fd)
 {
 	char	*str;
-	int		len;
+	char	*tmp;
+	char	*line;
 
 	str = NULL;
+	tmp = NULL;
+	line = NULL;
 	if (*fd == -1)
 		return ("error");
-	while (get_next_line(*fd, line))
+	while (get_next_line(*fd, &line))
 	{
-		len = ft_strlen(*line);
 		if (!str)
-			str = ft_strdup(*line);
+			str = ft_strdupendl(line);
 		else
 		{
 			tmp = str;
-			str = ft_strjoin(str, *line);
+			str = ft_strjoinendl(str, line);
 			free(tmp);
-			len = ft_strlen(str);
 		}
-		str[len] = '\n';
-		str[len + 1] = '\0';
-		ft_strdel(line);
+		ft_strdel(&line);
 	}
 	if (str == NULL)
 		return ("error");

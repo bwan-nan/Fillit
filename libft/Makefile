@@ -6,7 +6,7 @@
 #    By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 12:28:58 by cnotin            #+#    #+#              #
-#    Updated: 2018/12/13 16:14:57 by bwan-nan         ###   ########.fr        #
+#    Updated: 2018/12/14 11:23:24 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ SRC = ft_strcpy.c ft_strlen.c ft_strdup.c ft_strncpy.c ft_strcmp.c \
 		ft_lstnew.c ft_lstadd.c ft_lstiter.c ft_lstdelone.c ft_lstdel.c \
 		ft_lstmap.c ft_lstcount.c ft_printlst.c ft_nb_word.c ft_strrev.c \
 		ft_isspace.c ft_strndup.c ft_strjoinf.c get_next_line.c ft_realloc.c \
-		ft_sqrt.c ft_find_next_sqrt.c ft_recursive_power.c
+		ft_sqrt.c ft_find_next_sqrt.c ft_recursive_power.c ft_strjoinendl.c \
+		ft_strdupendl.c
 
 
 OBJ = $(SRC:.c=.o)

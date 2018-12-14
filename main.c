@@ -6,11 +6,12 @@
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:15:28 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/13 19:48:40 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/14 11:44:35 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 static int		do_we_expand_it(t_block **blocks_list)
 {
@@ -64,24 +65,9 @@ static void		solver(char *str, t_block **blocks_list)
 			map = ft_block_map(map, map_width);
 		}
 		ft_display_map(map);
-		free(map);
 	}
 	else
 		ft_putendl("error");
-}
-
-static void		ft_free_list(t_block **blocks_list)
-{
-	t_block *elem;
-	t_block *tmp;
-
-	elem = *blocks_list;
-	while (elem)
-	{
-		tmp = elem->next;
-		free(elem);
-		elem = tmp;
-	}
 }
 
 int				main(int ac, char **av)
@@ -100,7 +86,7 @@ int				main(int ac, char **av)
 	else
 	{
 		fd = open(av[1], O_RDONLY);
-		str = ft_read(&fd, &line, tmp);
+		str = ft_read(&fd);
 		close(fd);
 		if (ft_strcmp(str, "error") == 0)
 		{
@@ -108,7 +94,7 @@ int				main(int ac, char **av)
 			return (-1);
 		}
 		solver(str, &blocks_list);
-		ft_free_list(&blocks_list);
+		free(blocks_list);
 	}
 	return (0);
 }
