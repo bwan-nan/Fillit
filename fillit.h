@@ -6,7 +6,7 @@
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:42:19 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/14 11:41:49 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/14 16:11:40 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,20 @@ typedef struct			s_block
 }						t_block;
 
 int						ft_check_file(char *str);
-t_block					*launcher(char *str);
+t_block					*launcher(t_block **blocks_list, char *str);
 t_block					*ft_stock_block(char *str);
-char					**ft_block_map(char **map, int size);
+char					**ft_block_map(int size);
 void					ft_display_map(char **map);
-void					ft_delmap(char ***map);
-int						backtracking(char **map, t_block **block,
+void					ft_delmap(char **map);
+int						backtracking(char **map, t_block *block,
 						int position, int size);
-char					**ft_put_block(char **map, t_block **block,
+void					ft_put_block(char **map, t_block *block,
 						int x_vector, int y_vector);
-char					**ft_del_block(char **map, t_block **block,
+void					ft_del_block(char **map, t_block **block,
 						int size);
+void					del_lst(t_block *lst);
 int						ft_count_block(char *file_name);
 char					*ft_read(int *fd);
-int						get_y_vector(t_block **block, int to_y);
-int						get_x_vector(t_block **block, int to_x);
+int						get_y_vector(t_block *block, int to_y);
+int						get_x_vector(t_block *block, int to_x);
 #endif

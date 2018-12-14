@@ -6,32 +6,40 @@
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 12:46:14 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/13 15:15:12 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/14 16:08:23 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void			ft_delmap(char ***map)
+void			ft_delmap(char **map)
 {
-	if (**map)
+	size_t i;
+
+	i = 0;
+	if (!map)
+		return ;
+	while (map[i])
 	{
-		free(**map);
-		(void)**map;
+		free(map[i]);
+		i++;
 	}
+	free(map);
 }
 
-char			**ft_block_map(char **map, int size)
+char			**ft_block_map(int size)
 {
-	int pos_x;
-	int pos_y;
+	int		pos_x;
+	int		pos_y;
+	char	**map;
 
+	map = NULL;
 	pos_y = 0;
-	if (!(map = (char **)malloc(sizeof(char *) * size + 1)))
+	if (!(map = (char **)malloc(sizeof(char *) * (size + 1))))
 		return (0);
 	while (pos_y < size)
 	{
-		if (!(map[pos_y] = (char *)malloc(sizeof(char) * size + 1)))
+		if (!(map[pos_y] = (char *)malloc(sizeof(char) * (size + 1))))
 			return (0);
 		pos_x = 0;
 		while (pos_x < size)
@@ -46,7 +54,7 @@ char			**ft_block_map(char **map, int size)
 	return (map);
 }
 
-char			**ft_del_block(char **map, t_block **block,
+void			ft_del_block(char **map, t_block **block,
 				int size)
 {
 	int i;
@@ -66,34 +74,23 @@ char			**ft_del_block(char **map, t_block **block,
 		}
 		pos_y++;
 	}
-	return (map);
 }
 
-char			**ft_put_block(char **map,
-				t_block **block, int x_vector, int y_vector)
+void			ft_put_block(char **map,
+				t_block *block, int x_vector, int y_vector)
 {
 	int i;
 	int pos_x;
 	int pos_y;
 
 	i = 0;
-	pos_y = 0;
-	while (map[pos_y])
+	while (i < 4)
 	{
-		pos_x = 0;
-		while (map[pos_y][pos_x])
-		{
-			if ((*block)->x[i] + x_vector == pos_x
-					&& (*block)->y[i] + y_vector == pos_y)
-			{
-				map[pos_y][pos_x] = (*block)->c;
-				i++;
-			}
-			pos_x++;
-		}
-		pos_y++;
+		pos_x = block->x[i] + x_vector;
+		pos_y = block->y[i] + y_vector;
+		map[pos_y][pos_x] = block->c;
+		i++;
 	}
-	return (map);
 }
 
 void			ft_display_map(char **map)

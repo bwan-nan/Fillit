@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 13:58:25 by bwan-nan          #+#    #+#             */
-/*   Updated: 2018/12/14 11:41:28 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:59:18 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,24 @@ static t_block		*ft_create_block(char *str, char letter)
 {
 	t_block		*new_block;
 	int			i;
-	int			j;
+	int			k;
 
 	i = 0;
-	j = 0;
+	k = 0;
 	if (!(new_block = (t_block *)malloc(sizeof(t_block))))
 		return (NULL);
-	else
+	while (i < 21)
 	{
-		while (i < 21)
+		if (str[i] == '#')
 		{
-			if (str[i] == '#')
-			{
-				new_block->x[j] = i % 5;
-				new_block->y[j] = i / 5;
-				j++;
-			}
-			i++;
+			new_block->x[k] = i % 5;
+			new_block->y[k] = i / 5;
+			k++;
 		}
-		new_block->c = letter;
-		new_block->next = NULL;
+		i++;
 	}
+	new_block->c = letter;
+	new_block->next = NULL;
 	return (new_block);
 }
 
@@ -71,24 +68,22 @@ static void			load_block(t_block **block, char *str, char letter)
 	}
 }
 
-t_block				*launcher(char *str)
+t_block				*launcher(t_block **blocks_list, char *str)
 {
-	t_block		*blocks_list;
 	int			count;
 	char		letter;
 	int			i;
 
-	blocks_list = NULL;
 	count = ft_count_block(str);
 	i = 0;
 	letter = 65;
 	while (count--)
 	{
-		load_block(&blocks_list, str + i, letter);
+		load_block(blocks_list, str + i, letter);
 		letter++;
 		i += 21;
 	}
-	return (blocks_list);
+	return (*blocks_list);
 }
 
 char				*ft_read(int *fd)
