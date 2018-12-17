@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 13:58:25 by bwan-nan          #+#    #+#             */
-/*   Updated: 2018/12/14 15:59:18 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2018/12/17 10:54:09 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,13 @@ char				*ft_read(int *fd)
 	char	*line;
 
 	str = NULL;
-	tmp = NULL;
 	line = NULL;
 	if (*fd == -1)
 		return ("error");
 	while (get_next_line(*fd, &line))
 	{
+		if (line == NULL)
+			return ("error");
 		if (!str)
 			str = ft_strdupendl(line);
 		else
