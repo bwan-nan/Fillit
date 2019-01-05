@@ -68,6 +68,3 @@ How to use:
     git clone https://github.com/bwan-nan/Fillit.git
     choose a map from the tests folder
     ./fillit tests/pdf_example_0.fillit
-
-
-[PDF]: https://github.com/giacomoguiulfo/fillit/blob/master/fillit.en.pdf
