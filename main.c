@@ -6,7 +6,7 @@
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:15:28 by cnotin            #+#    #+#             */
-/*   Updated: 2018/12/14 16:12:17 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/01/07 15:47:25 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ static void		solver(char *str, t_block **blocks_list)
 	{
 		launcher(blocks_list, str);
 		if (ft_find_next_sqrt(ft_count_block(str) * 4) ==
-			ft_sqrt(ft_count_block(str) * 4) &&
-			do_we_expand_it(*blocks_list) == 1 && ft_count_block(str) > 7)
+			ft_sqrt(ft_count_block(str) * 4)
+			&& do_we_expand_it(*blocks_list) == 1 && ft_count_block(str) > 7)
 			map_width = ft_find_next_sqrt(ft_count_block(str) * 4) + 1;
 		else
 			map_width = ft_find_next_sqrt(ft_count_block(str) * 4);
