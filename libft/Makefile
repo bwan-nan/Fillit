@@ -6,7 +6,7 @@
 #    By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 12:28:58 by cnotin            #+#    #+#              #
-#    Updated: 2018/12/14 11:23:24 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/01/09 20:03:40 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,17 +42,20 @@ SRC = ft_strcpy.c ft_strlen.c ft_strdup.c ft_strncpy.c ft_strcmp.c \
 OBJ = $(SRC:.c=.o)
 
 $(NAME):
-		$(CC) -c $(FLAGS) $(SRC) $(OPTION)
-		ar rc $(NAME) $(OBJ)
-		ranlib $(NAME)
+		@$(CC) -c $(FLAGS) $(SRC) $(OPTION)
+		@ar rc $(NAME) $(OBJ)
+		@ranlib $(NAME)
+		@echo "\033[1;34mLibft\t\t\033[1;33mCompilation\t\t\033[0;32m[OK]\033[0m"
 
 
 all: $(NAME)
 
 clean:
-		rm -rf $(OBJ)
+		@rm -rf $(OBJ)
+		@echo "\033[1;34mLibft\t\t\033[1;33mCleaning obj\t\t\033[0;32m[OK]\033[0m"
 
 fclean: clean
-		rm -rf  $(NAME)
+		@rm -rf  $(NAME)
+		@echo "\033[1;34mLibft\t\t\033[1;33mCleaning lib\t\t\033[0;32m[OK]\033[0m"
 
 re: fclean all
