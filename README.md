@@ -63,8 +63,33 @@ HF.GGE.
 HHGGIII
 .H...I.
 ```
-How to use:
+### How to use:
+
+Clone the repo and open it:
 
     git clone https://github.com/bwan-nan/Fillit.git
-    choose a map from the tests folder
-    ./fillit tests/pdf_example_0.fillit
+    cd Fillit
+    
+Then choose a map from the tests folder:
+
+    cat tests/valid_1
+    ./fillit tests/valid_1
+    
+For this example:
+
+    ....
+    .##.
+    ..#.
+    ..#.
+
+    .##.
+    ..#.
+    ..#.
+    ....
+    
+The output should be this:
+
+    AABB
+    .A.B
+    .A.B
+    ....
