@@ -1,8 +1,10 @@
 Fillit
 ========
-### 42 - Project #2
+### 42 - Group Project #2
 
 Fillit is a recursive backtracking algorithm that fits a set of Tetriminos in the smallest possible square without rotating the Tetriminos. For more information, please [read the pdf](https://github.com/bwan-nan/Fillit/blob/master/fillit.en.pdf).
+
+This group project was done in collaboration with cnotin at 42.
 
 Here is an example of valid input of 9 Tetriminos (maximum of 26 blocks):
 
